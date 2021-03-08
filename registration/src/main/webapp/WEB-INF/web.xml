@@ -1,0 +1,28 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Credential Verification</display-name>
+  
+  <welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+  	<servlet-name>VerificationInit</servlet-name>
+  	<display-name>VerificationInit</display-name>
+  	<description></description>
+  	<servlet-class>com.init.VerificationInit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>VerificationInit</servlet-name>
+  	<url-pattern>/Logged-In</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
