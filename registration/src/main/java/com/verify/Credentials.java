@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Credentials {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID;
+	private long ID;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -34,12 +34,13 @@ public class Credentials {
 	@Column(name="register_date")
 	private Date date;
 	
-	public Credentials(String firstName, String lastName, String email, String password) {
+	public Credentials( String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.date = new Date();
 	}
 
 	public Credentials() {
@@ -47,7 +48,7 @@ public class Credentials {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
