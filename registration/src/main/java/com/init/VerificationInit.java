@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,7 +67,7 @@ public class VerificationInit extends HttpServlet {
 			
 			List<Credentials> creds = session.createQuery("from com.verify.Credentials", Credentials.class).list();
 			
-			out.println("<html><body> Checking Credentails...");
+			out.println("<html><body>");
 		
 			Optional<Credentials> user = creds.stream()
 					.filter( c -> c.getEmail().equals(email))
@@ -76,12 +76,13 @@ public class VerificationInit extends HttpServlet {
 			if (user.isPresent()) {
 				Credentials c = user.get();
 				if(!c.getPassword().equals(pswd)) {
-					request.setAttribute("errorMessage", "Invalid Password");
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+					out.println("<p style='color: #FF0000'>Invalid Password</p>");
+					out.println("<a href='login.jsp'>Retry Login</a>");
 				}
 				else {
-					request.setAttribute("name", c.getFirstName() + c.getLastName());
-					request.getRequestDispatcher("/Welcome").forward(request, response);
+					out.println("<h2>Welcome to the Home Page</h2>");
+					out.println("<p>Glad you could make it " + c.getFirstName() + " " + c.getLastName() + "</p><br/>");
+					out.println("<a href='/registration'>Sign Out</a>");
 
 				}
 //				RequestDispatcher reqDispatcher = request.getRequestDispatcher("/welcome.jsp");
@@ -89,11 +90,11 @@ public class VerificationInit extends HttpServlet {
 //				response.sendRedirect("/Welcome");
 			}
 			else {
-				request.setAttribute("errorMessage", "Not a Valid Email");
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				out.println("<p style='color: #FF0000'>Invalid Username</p>");
+				out.println("<a href='login.jsp'>Retry Login</a>");
 			}
 			
-			
+			 	
 				
 				out.println("</body></html>");
 				session.close();

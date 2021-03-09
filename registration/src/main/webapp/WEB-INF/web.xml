@@ -12,6 +12,8 @@
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>register.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<servlet>
@@ -20,9 +22,19 @@
   	<description></description>
   	<servlet-class>com.init.VerificationInit</servlet-class>
   </servlet>
+	<servlet>
+		<servlet-name>WelcomeScreen</servlet-name>
+		<display-name>WelcomeScreen</display-name>
+		<description></description>
+		<servlet-class>com.init.WelcomeScreen</servlet-class>
+	</servlet>
   <servlet-mapping>
   	<servlet-name>VerificationInit</servlet-name>
-  	<url-pattern>/Logged-In</url-pattern>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WelcomeScreen</servlet-name>
+  	<url-pattern>/welcome</url-pattern>
   </servlet-mapping>
   
 </web-app>
